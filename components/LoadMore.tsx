@@ -6,24 +6,22 @@ import { useEffect, useState } from "react";
 import { useInView } from 'react-intersection-observer'
 import AnimeCard, { AnimeProp } from "./AnimeCard";
 
-let page = 7; 
+let page = 2; 
 
 export type AnimeCard = JSX.Element
-
-
 
 function LoadMore() {
 
   const { ref, inView } = useInView()
   const [data, setData] = useState<AnimeCard[]>([])
+  console.log('Page' ,  page)
 
   useEffect(()=>{
-
       if(inView){
-
         fetchAnime(page).then((res)=>{
           setData([...data, ...res])
-          page++
+          page++;
+          console.log(page)
         })
       }
   },[inView, data])
